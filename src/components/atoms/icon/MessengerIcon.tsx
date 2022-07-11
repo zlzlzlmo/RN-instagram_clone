@@ -5,8 +5,8 @@ import { Colors } from "../../../styles/colors";
 const MessengerIcon = () => {
   return (
     <Pressable>
-      <View style={styles.readBadge}>
-        <Text style={styles.readBadgeText}>11</Text>
+      <View style={styles.redBadge}>
+        <Text style={styles.redBadgeText}>11</Text>
       </View>
       <Image
         style={styles.icon}
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     marginLeft: 10,
   },
-  readBadge: {
+  redBadge: {
     backgroundColor: Colors.redColor,
     position: "absolute",
     right: -10,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     zIndex: 1,
   },
-  readBadgeText: {
+  redBadgeText: {
     color: Colors.whiteColor,
   },
 });

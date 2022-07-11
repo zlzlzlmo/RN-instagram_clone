@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest"
   },
   "dependencies": {
     "expo": "~45.0.6",
@@ -15,13 +16,22 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.69.1",
-    "react-native-web": "0.18.6"
+    "react-native-web": "0.18.6",
+    "ts-jest": "^28.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
+    "@testing-library/react-native": "^10.1.1",
+    "@types/jest": "^27.1.4",
     "@types/react": "~18.0.15",
     "@types/react-native": "~0.69.2",
+    "jest": "^27.1.2",
+    "jest-expo": "^45.0.1",
+    "react-test-renderer": "^18.2.0",
     "typescript": "~4.7.4"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo"
+  }
 }
