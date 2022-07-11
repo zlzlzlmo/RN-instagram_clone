@@ -7,11 +7,12 @@ const Header = () => {
     <View style={styles.container}>
       <Pressable>
         <Image
+          accessibilityHint="app-logo"
           style={styles.logo}
           source={require("../../assets/Instagram_logo.png")}
         />
       </Pressable>
-      <View style={styles.iconContainer}>
+      <View style={styles.iconContainer} accessibilityHint="header-icons">
         <IconFactory iconType="PLUS" />
         <IconFactory iconType="LIKE" />
         <IconFactory iconType="MESSENGER" />
