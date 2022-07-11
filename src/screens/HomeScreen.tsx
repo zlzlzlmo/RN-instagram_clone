@@ -2,12 +2,14 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Colors } from "../styles/colors";
 import Header from "../components/home/Header";
+import Stories from "../components/molecules/Stories";
 
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.innerContainer}>
         <Header />
+        <Stories />
       </View>
     </SafeAreaView>
   );
