@@ -6,7 +6,9 @@ import Header from "../components/home/Header";
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
+      <View style={styles.innerContainer}>
+        <Header />
+      </View>
     </SafeAreaView>
   );
 };
@@ -17,5 +19,8 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.blackColor,
     flex: 1,
+  },
+  innerContainer: {
+    paddingHorizontal: 20,
   },
 });
