@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react-native";
-import Header from "../../src/components/home/Header";
+import Header from "../Header";
 
 test("render Header", () => {
   render(<Header />);

@@ -1,7 +1,7 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { Fragment } from "react";
 import { Colors } from "../styles/colors";
-import Header from "../components/home/Header";
+import Header from "../layout/Header";
 import Stories from "../components/ui/Stories";
 import Post from "../components/ui/post/Post";
 import { POSTS } from "../mocks/post-mock.data";

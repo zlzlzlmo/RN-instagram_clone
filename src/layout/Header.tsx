@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
-import IconFactory from "../atoms/icon/IconFactory";
+import IconFactory from "../components/atoms/icon/IconFactory";
 
 const Header = () => {
   return (
@@ -9,7 +9,7 @@ const Header = () => {
         <Image
           accessibilityHint="app-logo"
           style={styles.logo}
-          source={require("../../assets/Instagram_logo.png")}
+          source={require("../assets/Instagram_logo.png")}
         />
       </Pressable>
       <View style={styles.iconContainer} accessibilityHint="header-icons">
