@@ -1,8 +1,10 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { Fragment } from "react";
 import { Colors } from "../styles/colors";
 import Header from "../components/home/Header";
 import Stories from "../components/ui/Stories";
+import Post from "../components/ui/post/Post";
+import { POSTS } from "../mocks/post-mock.data";
 
 const HomeScreen = () => {
   return (
@@ -10,6 +12,13 @@ const HomeScreen = () => {
       <View style={styles.innerContainer}>
         <Header />
         <Stories />
+        <ScrollView>
+          {POSTS.map((post, index) => (
+            <Fragment key={index}>
+              <Post {...post} />
+            </Fragment>
+          ))}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );

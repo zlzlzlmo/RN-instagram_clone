@@ -1,6 +1,7 @@
+import { IPost } from "../ts/interface/post.interface";
 import { USERS } from "./user-mock-data";
 
-export const POSTS = [
+export const POSTS: IPost[] = [
   {
     imageUrl:
       "https://velog.velcdn.com/images/hoon_dev/post/bbac3b86-a56d-4b1d-a741-ee7599341e4b/image.png",

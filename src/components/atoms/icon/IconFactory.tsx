@@ -3,11 +3,13 @@ import React, { Component } from "react";
 import PlusIcon from "./PlusIcon";
 import LikeIcon from "./LikeIcon";
 import MessengerIcon from "./MessengerIcon";
+import CommentIcon from "./CommentIcon";
 
 const OIconType = {
   plus: "PLUS",
   like: "LIKE",
   messenger: "MESSENGER",
+  comment: "COMMENT",
 } as const;
 
 type IconType = typeof OIconType[keyof typeof OIconType];
@@ -25,6 +27,8 @@ export class IconFactory extends Component<IconProps> {
         return <LikeIcon />;
       case OIconType.messenger:
         return <MessengerIcon />;
+      case OIconType.comment:
+        return <CommentIcon />;
       default:
         throw new Error("wrong icon type");
     }

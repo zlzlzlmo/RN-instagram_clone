@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import IconFactory from "../../atoms/icon/IconFactory";
 
 const PostFooter = () => {
   return (
     <View>
-      <Text>PostFooter</Text>
+      <IconFactory iconType="LIKE" />
+      <IconFactory iconType="COMMENT" />
+      <IconFactory iconType="LIKE" />
     </View>
   );
 };
