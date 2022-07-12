@@ -2,12 +2,9 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { USERS } from "../../mocks/user-mock-data";
 import { Colors } from "../../styles/colors";
+import StringTransformation from "../../util/transformation/str-transformation";
 
 const Stories = () => {
-  const sliceString = (str: string, maxLength: number) => {
-    return str.length > maxLength + 1 ? str.slice(0, maxLength) + "..." : str;
-  };
-
   return (
     <View style={styles.container}>
       <ScrollView horizontal>
@@ -19,7 +16,9 @@ const Stories = () => {
                 uri: image,
               }}
             />
-            <Text style={styles.userName}>{sliceString(user, 10)}</Text>
+            <Text style={styles.userName}>
+              {new StringTransformation(user).slice(10)}
+            </Text>
           </View>
         ))}
       </ScrollView>
