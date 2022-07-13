@@ -9,7 +9,7 @@ import PostFooter from "./PostFooter";
 const Post = (post: IPost) => {
   return (
     <View style={styles.container}>
-      <Divider width={1} orientation="vertical" />
+      <Divider width={1} orientation="vertical" style={{ marginBottom: 15 }} />
       <PostHeader profile_picture={post.profile_picture} user={post.user} />
       <PostImage imageUrl={post.imageUrl} />
       <PostFooter />

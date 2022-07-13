@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 450,
+    marginVertical: 20,
   },
   postImage: {
     height: "100%",
