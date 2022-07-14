@@ -5,6 +5,7 @@ import { Divider } from "@rneui/themed";
 import PostHeader from "./PostHeader";
 import PostImage from "./PostImage";
 import PostFooter from "./PostFooter";
+import PostLikes from "./PostLikes";
 
 const Post = (post: IPost) => {
   return (
@@ -12,7 +13,10 @@ const Post = (post: IPost) => {
       <Divider width={1} orientation="vertical" style={{ marginBottom: 15 }} />
       <PostHeader profile_picture={post.profile_picture} user={post.user} />
       <PostImage imageUrl={post.imageUrl} />
-      <PostFooter />
+      <View>
+        <PostFooter />
+        <PostLikes likes={post.likes} />
+      </View>
     </View>
   );
 };
