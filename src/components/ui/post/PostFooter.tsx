@@ -28,5 +28,6 @@ const styles = StyleSheet.create({
   leftSide: {
     flexDirection: "row",
     alignItems: "center",
+    marginLeft: -10,
   },
 });

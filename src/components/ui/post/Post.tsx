@@ -6,6 +6,8 @@ import PostHeader from "./PostHeader";
 import PostImage from "./PostImage";
 import PostFooter from "./PostFooter";
 import PostLikes from "./PostLikes";
+import PostCaption from "./PostCaption";
+import PostCommentSection from "./PostCommentSection";
 
 const Post = (post: IPost) => {
   return (
@@ -16,6 +18,8 @@ const Post = (post: IPost) => {
       <View>
         <PostFooter />
         <PostLikes likes={post.likes} />
+        <PostCaption user={post.user} caption={post.caption} />
+        <PostCommentSection comments={post.comments} />
       </View>
     </View>
   );
