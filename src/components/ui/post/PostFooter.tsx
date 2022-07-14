@@ -8,10 +8,10 @@ const PostFooter = () => {
       <View style={styles.leftSide}>
         <IconFactory iconType="LIKE" />
         <IconFactory iconType="COMMENT" />
-        <IconFactory iconType="LIKE" />
+        <IconFactory iconType="SHARE" />
       </View>
       <View>
-        <IconFactory iconType="COMMENT" />
+        <IconFactory iconType="BOOKMARK" />
       </View>
     </View>
   );

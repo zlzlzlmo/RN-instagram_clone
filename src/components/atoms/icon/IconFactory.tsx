@@ -4,12 +4,16 @@ import PlusIcon from "./PlusIcon";
 import LikeIcon from "./LikeIcon";
 import MessengerIcon from "./MessengerIcon";
 import CommentIcon from "./CommentIcon";
+import ShareIcon from "./ShareIcon";
+import BookmarkIcon from "./BookmarkIcon";
 
 const OIconType = {
   plus: "PLUS",
   like: "LIKE",
   messenger: "MESSENGER",
   comment: "COMMENT",
+  bookmark: "BOOKMARK",
+  share: "SHARE",
 } as const;
 
 type IconType = typeof OIconType[keyof typeof OIconType];
@@ -29,6 +33,10 @@ export class IconFactory extends Component<IconProps> {
         return <MessengerIcon />;
       case OIconType.comment:
         return <CommentIcon />;
+      case OIconType.share:
+        return <ShareIcon />;
+      case OIconType.bookmark:
+        return <BookmarkIcon />;
       default:
         throw new Error("wrong icon type");
     }
