@@ -8,6 +8,7 @@ import PostFooter from "./PostFooter";
 import PostLikes from "./PostLikes";
 import PostCaption from "./PostCaption";
 import PostCommentSection from "./PostCommentSection";
+import PostComments from "./PostComments";
 
 const Post = (post: IPost) => {
   return (
@@ -20,6 +21,7 @@ const Post = (post: IPost) => {
         <PostLikes likes={post.likes} />
         <PostCaption user={post.user} caption={post.caption} />
         <PostCommentSection comments={post.comments} />
+        <PostComments comments={post.comments} />
       </View>
     </View>
   );
