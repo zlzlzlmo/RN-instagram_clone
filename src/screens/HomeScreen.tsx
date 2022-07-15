@@ -1,4 +1,11 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { Fragment } from "react";
 import { Colors } from "../styles/colors";
 import Header from "../layout/Header";
@@ -9,22 +16,24 @@ import BottomTabs from "../layout/BottomTabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
-  // const insets = useSafeAreaInsets();
+  const insets = useSafeAreaInsets();
 
   return (
     <SafeAreaView style={styles.container}>
+      <Header />
       <View style={styles.innerContainer}>
-        <Header />
         <Stories />
-        <ScrollView style={{ marginBottom: "5%" }}>
-          {POSTS.map((post, index) => (
-            <Fragment key={index}>
-              <Post {...post} />
+        <FlatList
+          style={{ marginBottom: insets.bottom }}
+          data={POSTS}
+          renderItem={(post) => (
+            <Fragment>
+              <Post {...post.item} />
             </Fragment>
-          ))}
-        </ScrollView>
-        <BottomTabs />
+          )}
+        ></FlatList>
       </View>
+      <BottomTabs />
     </SafeAreaView>
   );
 };
@@ -37,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   innerContainer: {
-    paddingHorizontal: 40,
-    backgroundColor: "blue",
+    paddingHorizontal: 20,
+    flex: 1,
   },
 });
