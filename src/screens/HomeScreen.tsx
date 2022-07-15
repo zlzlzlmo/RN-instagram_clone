@@ -5,20 +5,25 @@ import Header from "../layout/Header";
 import Stories from "../components/ui/Stories";
 import Post from "../components/ui/post/Post";
 import { POSTS } from "../mocks/post-mock.data";
+import BottomTabs from "../layout/BottomTabs";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
+  // const insets = useSafeAreaInsets();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.innerContainer}>
         <Header />
         <Stories />
-        <ScrollView>
+        <ScrollView style={{ marginBottom: "5%" }}>
           {POSTS.map((post, index) => (
             <Fragment key={index}>
               <Post {...post} />
             </Fragment>
           ))}
         </ScrollView>
+        <BottomTabs />
       </View>
     </SafeAreaView>
   );
@@ -32,6 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   innerContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 40,
+    backgroundColor: "blue",
   },
 });
