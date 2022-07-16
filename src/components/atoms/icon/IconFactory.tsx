@@ -1,4 +1,3 @@
-import { Text, View } from "react-native";
 import React, { Component } from "react";
 import PlusIcon from "./PlusIcon";
 import LikeIcon from "./LikeIcon";
@@ -6,6 +5,7 @@ import MessengerIcon from "./MessengerIcon";
 import CommentIcon from "./CommentIcon";
 import ShareIcon from "./ShareIcon";
 import BookmarkIcon from "./BookmarkIcon";
+import BackArrowIcon from "./BackArrowIcon";
 
 const OIconType = {
   plus: "PLUS",
@@ -14,6 +14,7 @@ const OIconType = {
   comment: "COMMENT",
   bookmark: "BOOKMARK",
   share: "SHARE",
+  back: "BACK",
 } as const;
 
 type IconType = typeof OIconType[keyof typeof OIconType];
@@ -37,6 +38,8 @@ export class IconFactory extends Component<IconProps> {
         return <ShareIcon />;
       case OIconType.bookmark:
         return <BookmarkIcon />;
+      case OIconType.back:
+        return <BackArrowIcon />;
       default:
         throw new Error("wrong icon type");
     }
