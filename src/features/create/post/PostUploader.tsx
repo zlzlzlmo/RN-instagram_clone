@@ -9,9 +9,31 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
+import uuid from "uuid";
+import { getApps, initializeApp } from "firebase/app";
+import firebaseConfig from "../../../../firebaseConfig";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
+if (!getApps().length) {
+  initializeApp(firebaseConfig);
+}
 
 const PostUploader = () => {
   const [image, setImage] = useState<any>(null);
+
+  const uploadImageToFirebase = async (uri: string) => {
+    console.log("uri : ", uri);
+
+    const fileRef = ref(getStorage(), "image.jpg");
+
+    const img = await fetch(uri);
+
+    const blob = await img.blob();
+
+    await uploadBytes(fileRef, blob);
+    const url = await getDownloadURL(fileRef);
+    console.log("url : ", url);
+  };
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -24,6 +46,13 @@ const PostUploader = () => {
 
     if (!result.cancelled) {
       setImage(result.uri);
+      const storage = getStorage();
+      const fileRef = ref(storage, "image.jpg");
+
+      const img = await fetch(result.uri);
+      const bytes = await img.blob();
+      console.log("bytes : ", bytes);
+      // uploadImageToFirebase(result.uri);
     }
   };
 
