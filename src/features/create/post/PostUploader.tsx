@@ -1,15 +1,23 @@
-import { StyleSheet, Text, View, Image, TextInput } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Text, View, Image, TextInput, Button } from "react-native";
+import React, { useEffect, useState } from "react";
 import { PLACEHOLDER_IMG } from "../../../datas/constant";
 import { Colors } from "../../../styles/colors";
 import { Divider } from "@rneui/base";
+import UrlRegEx from "../../../util/regex/urlRegEx";
 
 const PostUploader = () => {
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [imageUrl, setImageUrl] = useState<string>(PLACEHOLDER_IMG);
+  const [isValidForm, setIsValidForm] = useState<boolean>(false);
 
   const handleImageUrl = (url: string) => {
-    setImageUrl(imageUrl);
+    setImageUrl(url);
   };
+
+  useEffect(() => {
+    const validUrl = new UrlRegEx(imageUrl).isValid();
+    setIsValidForm(validUrl);
+  }, [imageUrl]);
+
   return (
     <>
       <View
@@ -22,7 +30,7 @@ const PostUploader = () => {
         <Image
           style={{ width: 100, height: 100 }}
           source={{
-            uri: PLACEHOLDER_IMG,
+            uri: imageUrl ? imageUrl : PLACEHOLDER_IMG,
           }}
         />
         <View style={{ flex: 1, marginLeft: 12 }}>
@@ -39,8 +47,17 @@ const PostUploader = () => {
         style={{ color: Colors.whiteColor, fontSize: 18 }}
         placeholder="Enter Image Url"
         placeholderTextColor={Colors.grayColor}
+        autoCapitalize="none"
         onChangeText={handleImageUrl}
       />
+      {!new UrlRegEx(imageUrl).isValid() && (
+        <Text style={{ fontSize: 10, color: "red" }}>
+          This is invalid url. please check it again.
+        </Text>
+      )}
+      <View style={{ marginTop: 20 }}>
+        <Button title="Share" disabled={!isValidForm} />
+      </View>
     </>
   );
 };
