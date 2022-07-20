@@ -3,11 +3,12 @@ import React from "react";
 import IconFactory from "../../../components/atoms/icon/IconFactory";
 import { Colors } from "../../../styles/colors";
 import PostUploader from "./PostUploader";
+import { RootTabScreenProps } from "../../../../navigation/types";
 
-const AddNewPost = () => {
+const AddNewPost = ({ navigation }: RootTabScreenProps<"NewPostScreen">) => {
   return (
     <View style={styles.container}>
-      <Header />
+      <Header navigation={navigation} />
       <PostUploader />
     </View>
   );
@@ -15,11 +16,11 @@ const AddNewPost = () => {
 
 export default AddNewPost;
 
-const Header = () => {
+const Header = ({ navigation }: RootTabScreenProps<"NewPostScreen">) => {
   return (
     <View style={styles.headerContainer}>
       <View style={styles.headerIcon}>
-        <IconFactory iconType="BACK" />
+        <IconFactory iconType="BACK" onPress={() => navigation.goBack()} />
       </View>
       <Text style={styles.headerText}>NEW POST</Text>
     </View>

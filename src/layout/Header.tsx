@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import IconFactory from "../components/atoms/icon/IconFactory";
+import { RootTabScreenProps } from "../../navigation/types";
 
-const Header = () => {
+const Header = ({ navigation }: RootTabScreenProps<"HomeScreen">) => {
   return (
     <View style={styles.container}>
       <Pressable>
@@ -13,7 +14,10 @@ const Header = () => {
         />
       </Pressable>
       <View style={styles.iconContainer} accessibilityHint="header-icons">
-        <IconFactory iconType="PLUS" />
+        <IconFactory
+          iconType="PLUS"
+          onPress={() => navigation.push("NewPostScreen")}
+        />
         <IconFactory iconType="LIKE" />
         <IconFactory iconType="MESSENGER" />
       </View>

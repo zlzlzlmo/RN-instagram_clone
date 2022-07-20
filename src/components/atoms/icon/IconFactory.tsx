@@ -19,15 +19,16 @@ const OIconType = {
 
 type IconType = typeof OIconType[keyof typeof OIconType];
 
-interface IconProps {
+export interface IconProps {
   iconType: IconType;
+  onPress?: any;
 }
 
 export class IconFactory extends Component<IconProps> {
   renderElement(props: IconProps) {
     switch (props.iconType) {
       case OIconType.plus:
-        return <PlusIcon />;
+        return <PlusIcon {...props} />;
       case OIconType.like:
         return <LikeIcon />;
       case OIconType.messenger:
@@ -39,7 +40,7 @@ export class IconFactory extends Component<IconProps> {
       case OIconType.bookmark:
         return <BookmarkIcon />;
       case OIconType.back:
-        return <BackArrowIcon />;
+        return <BackArrowIcon {...props} />;
       default:
         throw new Error("wrong icon type");
     }

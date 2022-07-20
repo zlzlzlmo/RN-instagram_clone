@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, Pressable, Image } from "react-native";
 import React from "react";
+import { IconProps } from "./IconFactory";
 
-const PlusIcon = () => {
+const PlusIcon = (props: Partial<IconProps>) => {
   return (
-    <Pressable>
+    <Pressable onPress={props.onPress}>
       <Image
         style={styles.icon}
         source={{

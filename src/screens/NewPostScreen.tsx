@@ -2,11 +2,12 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Colors } from "../styles/colors";
 import AddNewPost from "../features/create/post/AddNewPost";
+import { RootTabScreenProps } from "../../navigation/types";
 
-const NewPostScreen = () => {
+const NewPostScreen = ({ navigation }: RootTabScreenProps<"NewPostScreen">) => {
   return (
     <SafeAreaView style={styles.container}>
-      <AddNewPost />
+      <AddNewPost navigation={navigation} />
     </SafeAreaView>
   );
 };

@@ -2,11 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../src/screens/HomeScreen";
 import NewPostScreen from "../src/screens/NewPostScreen";
-
-type RootStackParamList = {
-  HomeScreen: undefined;
-  NewPostScreen: undefined;
-};
+import { RootStackParamList } from "./types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

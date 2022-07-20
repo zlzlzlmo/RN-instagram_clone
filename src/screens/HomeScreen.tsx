@@ -14,13 +14,14 @@ import Post from "../components/ui/post/Post";
 import { POSTS } from "../mocks/post-mock.data";
 import BottomTabs from "../layout/BottomTabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { RootTabScreenProps } from "../../navigation/types";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }: RootTabScreenProps<"HomeScreen">) => {
   const insets = useSafeAreaInsets();
 
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
+      <Header navigation={navigation} />
       <View style={styles.innerContainer}>
         <Stories />
         <FlatList
