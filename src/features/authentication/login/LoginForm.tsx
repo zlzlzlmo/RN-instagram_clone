@@ -1,16 +1,10 @@
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from "react-native";
-import React, { useMemo, useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import React, { useMemo } from "react";
 import { Colors } from "../../../styles/colors";
-import LoginInput from "./LoginInput";
 import useLoginForm from "./hooks/useLoginForm";
 import LoginButton from "./LoginButton";
 import ValidatorFactory from "../../../util/validator/validatorFactory";
+import Input, { OInputType } from "../../../components/atoms/input";
 
 const LoginForm = () => {
   const { loginInfo, handleEmail, handlePassword, handleLogin } =
@@ -25,16 +19,19 @@ const LoginForm = () => {
 
   return (
     <View style={styles.container}>
-      <LoginInput
-        type="ID"
-        value={loginInfo.email}
+      <Input
+        inputType={OInputType.normal}
+        placeholder="Phone number, username or email"
         onChangeText={handleEmail}
+        value={loginInfo.email}
       />
-      <LoginInput
-        type="PASSWORD"
+      <Input
+        inputType={OInputType.secure}
+        placeholder="Password"
         value={loginInfo.password}
         onChangeText={handlePassword}
       />
+
       <View style={{ alignItems: "flex-end", marginBottom: 30 }}>
         <Text style={{ color: Colors.lightBlue }}>Forgot password?</Text>
       </View>
