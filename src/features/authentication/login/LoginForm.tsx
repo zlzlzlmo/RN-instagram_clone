@@ -2,9 +2,10 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useMemo } from "react";
 import { Colors } from "../../../styles/colors";
 import useLoginForm from "./hooks/useLoginForm";
-import LoginButton from "./LoginButton";
 import ValidatorFactory from "../../../util/validator/validatorFactory";
 import Input, { OInputType } from "../../../components/atoms/input";
+import Button from "../components/Button";
+import Label from "../components/Label";
 
 const LoginForm = () => {
   const { loginInfo, handleEmail, handlePassword, handleLogin } =
@@ -35,19 +36,14 @@ const LoginForm = () => {
       <View style={{ alignItems: "flex-end", marginBottom: 30 }}>
         <Text style={{ color: Colors.lightBlue }}>Forgot password?</Text>
       </View>
-      <LoginButton
-        activeLoginButton={activeLoginButton}
+      <Button active={activeLoginButton} onPress={handleLogin}>
+        Login
+      </Button>
+      <Label
+        title="Don't have an account?"
+        main="Sign Up"
         onPress={handleLogin}
       />
-
-      <View style={styles.signUpContainer}>
-        <Text>Don't have an account?</Text>
-        <TouchableOpacity onPress={handleLogin}>
-          <Text style={{ color: Colors.lightBlue, marginLeft: 3 }}>
-            Sign Up
-          </Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };
@@ -57,12 +53,5 @@ export default LoginForm;
 const styles = StyleSheet.create({
   container: {
     marginTop: 80,
-  },
-
-  signUpContainer: {
-    marginTop: 50,
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "center",
   },
 });
