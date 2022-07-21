@@ -9,3 +9,10 @@ class UrlRegEx extends RegExp {
 }
 
 export default UrlRegEx;
+
+// 이메일,url, username, password
+// isvalid
+// 조건이 다르다.
+// 클래스에서 조건 선언
+// 팩토리?
+// new VlidationFactory('email').isValid()

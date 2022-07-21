@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Validator from "email-validator";
-import EmailValidator from "../../../../lib/emailValidator";
+import ValidatorFactory from "../../../../util/validator/validatorFactory";
 
 type LoginInfoKeyType = "email" | "password";
 
@@ -19,7 +19,8 @@ const useLoginForm = () => {
   };
 
   const handleLogin = () => {
-    if (!new EmailValidator(loginInfo.email).isEmail()) return;
+    if (!ValidatorFactory.createValidator("email", loginInfo.email).isValid())
+      return;
   };
 
   return { loginInfo, handleEmail, handlePassword, handleLogin };

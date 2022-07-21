@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../src/screens/HomeScreen";
 import LoginScreen from "../src/screens/LoginScreen";
 import NewPostScreen from "../src/screens/NewPostScreen";
+import SignUpScreen from "../src/screens/SignUpScreen";
 import { RootStackParamList } from "./types";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -20,6 +21,7 @@ const Navigation = () => (
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="NewPostScreen" component={NewPostScreen} />
       <Stack.Screen name="LoginScreen" component={LoginScreen} />
+      <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
     </Stack.Navigator>
   </NavigationContainer>
 );

@@ -1,12 +1,13 @@
 import Validator from "email-validator";
+import { IValidator } from "./validatorFactory";
 
-class EmailValidator {
+class EmailValidator implements IValidator {
   constructor(
     private readonly email: string,
     private readonly validator = Validator
   ) {}
 
-  isEmail(): boolean {
+  isValid(): boolean {
     return this.validator.validate(this.email);
   }
 }

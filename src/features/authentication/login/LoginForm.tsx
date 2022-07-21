@@ -9,8 +9,8 @@ import React, { useMemo, useState } from "react";
 import { Colors } from "../../../styles/colors";
 import LoginInput from "./LoginInput";
 import useLoginForm from "./hooks/useLoginForm";
-import EmailValidator from "../../../lib/emailValidator";
 import LoginButton from "./LoginButton";
+import ValidatorFactory from "../../../util/validator/validatorFactory";
 
 const LoginForm = () => {
   const { loginInfo, handleEmail, handlePassword, handleLogin } =
@@ -18,8 +18,8 @@ const LoginForm = () => {
 
   const activeLoginButton = useMemo<boolean>(() => {
     return (
-      new EmailValidator(loginInfo.email).isEmail() &&
-      loginInfo.password.length > 0
+      ValidatorFactory.createValidator("email", loginInfo.email).isValid() &&
+      ValidatorFactory.createValidator("password", loginInfo.password).isValid()
     );
   }, [loginInfo]);
 

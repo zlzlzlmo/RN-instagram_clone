@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { PLACEHOLDER_IMG } from "../../../datas/constant";
 import { Colors } from "../../../styles/colors";
 import { Divider } from "@rneui/base";
-import UrlRegEx from "../../../util/regex/urlRegEx";
 import { RootTabScreenProps } from "../../../../navigation/types";
 import validUrl from "valid-url";
+import ValidatorFactory from "../../../util/validator/validatorFactory";
 
 const PostUploader = ({
   navigation,
@@ -18,8 +18,7 @@ const PostUploader = ({
   };
 
   useEffect(() => {
-    const isUrl = new UrlRegEx(imageUrl).isValid();
-    setIsValidForm(isUrl);
+    setIsValidForm(ValidatorFactory.createValidator("url", imageUrl).isValid());
   }, [imageUrl]);
 
   return (
@@ -54,7 +53,7 @@ const PostUploader = ({
         autoCapitalize="none"
         onChangeText={handleImageUrl}
       />
-      {!new UrlRegEx(imageUrl).isValid() && (
+      {!ValidatorFactory.createValidator("url", imageUrl).isValid() && (
         <Text style={{ fontSize: 10, color: "red" }}>
           This is invalid url. please check it again.
         </Text>

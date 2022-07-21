@@ -8,6 +8,7 @@ export type RootStackParamList = {
   HomeScreen: undefined;
   NewPostScreen: undefined;
   LoginScreen: undefined;
+  SignUpScreen: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootStackParamList> =
