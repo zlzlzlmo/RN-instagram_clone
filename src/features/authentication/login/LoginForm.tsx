@@ -6,8 +6,11 @@ import ValidatorFactory from "../../../util/validator/validatorFactory";
 import Input, { OInputType } from "../../../components/atoms/input";
 import Button from "../components/Button";
 import Label from "../components/Label";
+import { RootTabScreenProps } from "../../../../navigation/types";
 
-const LoginForm = () => {
+const LoginForm = ({
+  navigation,
+}: Partial<RootTabScreenProps<"LoginScreen">>) => {
   const { loginInfo, handleEmail, handlePassword, handleLogin } =
     useLoginForm();
 
@@ -42,7 +45,7 @@ const LoginForm = () => {
       <Label
         title="Don't have an account?"
         main="Sign Up"
-        onPress={handleLogin}
+        onPress={() => navigation?.navigate("SignUpScreen")}
       />
     </View>
   );

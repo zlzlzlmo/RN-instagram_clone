@@ -4,8 +4,11 @@ import Input, { OInputType } from "../../../components/atoms/input";
 import Button from "../components/Button";
 import Label from "../components/Label";
 import useSignUpForm from "./hooks/useSignUpForm";
+import { RootTabScreenProps } from "../../../../navigation/types";
 
-const SignUpForm = () => {
+const SignUpForm = ({
+  navigation,
+}: Partial<RootTabScreenProps<"SignUpScreen">>) => {
   const {
     signUpInfo,
     isValidSignUp,
@@ -39,7 +42,11 @@ const SignUpForm = () => {
           Sign Up
         </Button>
       </View>
-      <Label title="Already have an account?" main="Login" onPress={() => {}} />
+      <Label
+        title="Already have an account?"
+        main="Login"
+        onPress={() => navigation?.navigate("LoginScreen")}
+      />
     </View>
   );
 };

@@ -3,8 +3,9 @@ import React from "react";
 import { INSTAGRAM_LOGO } from "../data/constants/logo";
 import { Colors } from "../styles/colors";
 import SignUpForm from "../features/authentication/signup/SignUpForm";
+import { RootTabScreenProps } from "../../navigation/types";
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }: RootTabScreenProps<"SignUpScreen">) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -16,7 +17,7 @@ const SignUpScreen = () => {
           }}
         />
       </View>
-      <SignUpForm />
+      <SignUpForm navigation={navigation} />
     </View>
   );
 };
