@@ -15,6 +15,7 @@ const SignUpForm = ({
     handleEmail,
     handlePassword,
     handleUserName,
+    handleSignUp,
   } = useSignUpForm();
   return (
     <View style={styles.container}>
@@ -38,7 +39,7 @@ const SignUpForm = ({
       />
 
       <View style={styles.buttonContainer}>
-        <Button active={isValidSignUp} onPress={() => {}}>
+        <Button active={isValidSignUp} onPress={handleSignUp}>
           Sign Up
         </Button>
       </View>

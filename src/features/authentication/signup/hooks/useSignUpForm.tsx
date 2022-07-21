@@ -34,12 +34,17 @@ const useSignUpForm = () => {
     setSignUpInfo((signUpInfo) => ({ ...signUpInfo, password }));
   };
 
+  const handleSignUp = () => {
+    if (!isValidSignUp) return;
+  };
+
   return {
     signUpInfo,
     isValidSignUp,
     handleEmail,
     handleUserName,
     handlePassword,
+    handleSignUp,
   };
 };
 
