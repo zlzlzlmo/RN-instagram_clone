@@ -2,11 +2,18 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import IconFactory from "../components/atoms/icon/IconFactory";
 import { RootTabScreenProps } from "../../navigation/types";
+import { getAuth, signOut } from "firebase/auth";
+import firebaseApp from "../../firebaseConfig";
 
 const Header = ({ navigation }: RootTabScreenProps<"HomeScreen">) => {
+  const handleSignOut = async () => {
+    try {
+      await signOut(getAuth(firebaseApp));
+    } catch (error) {}
+  };
   return (
     <View style={styles.container}>
-      <Pressable>
+      <Pressable onPress={handleSignOut}>
         <Image
           accessibilityHint="app-logo"
           style={styles.logo}

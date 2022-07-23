@@ -1,23 +1,21 @@
-import {
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import React, { Fragment } from "react";
+import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
+import React, { Fragment, useEffect, useState } from "react";
 import { Colors } from "../styles/colors";
 import Header from "../layout/Header";
 import Stories from "../components/ui/Stories";
 import Post from "../components/ui/post/Post";
-import { POSTS } from "../mocks/post-mock.data";
 import BottomTabs from "../layout/BottomTabs";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { RootTabScreenProps } from "../../navigation/types";
+import PostService from "../service/postService";
 
 const HomeScreen = ({ navigation }: RootTabScreenProps<"HomeScreen">) => {
+  const [posts, setPosts] = useState<any[]>([]);
   const insets = useSafeAreaInsets();
+
+  useEffect(() => {
+    new PostService().getPosts().then((result) => setPosts(result));
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -26,7 +24,7 @@ const HomeScreen = ({ navigation }: RootTabScreenProps<"HomeScreen">) => {
         <Stories />
         <FlatList
           style={{ marginBottom: insets.bottom }}
-          data={POSTS}
+          data={posts}
           renderItem={(post) => (
             <Fragment>
               <Post {...post.item} />

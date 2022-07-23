@@ -11,7 +11,7 @@ const AuthNavigation = () => {
     const auth = getAuth(firebaseApp);
     onAuthStateChanged(auth, (user) => {
       if (!user) return;
-      console.log("user : ", user);
+
       setCurrentUser(true);
     });
   }, []);

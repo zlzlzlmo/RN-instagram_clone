@@ -8,11 +8,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-
-type LoginInfoKeyType = "email" | "password";
+import { LoginInfoType } from "../ts/type";
+import FirebaseAuthentication from "../../../../util/authentication/firebaseAuthentication";
 
 const useLoginForm = () => {
-  const [loginInfo, setLoginInfo] = useState<Record<LoginInfoKeyType, string>>({
+  const [loginInfo, setLoginInfo] = useState<LoginInfoType>({
     email: "",
     password: "",
   });
@@ -29,16 +29,7 @@ const useLoginForm = () => {
     if (!ValidatorFactory.createValidator("email", loginInfo.email).isValid())
       return;
 
-    try {
-      const auth = getAuth(firebaseApp);
-      const authUser = await signInWithEmailAndPassword(
-        auth,
-        loginInfo.email,
-        loginInfo.password
-      );
-    } catch (error: any) {
-      Alert.alert("Not Allowed", error.message);
-    }
+    new FirebaseAuthentication().login(loginInfo);
   };
 
   return { loginInfo, handleEmail, handlePassword, handleLogin };

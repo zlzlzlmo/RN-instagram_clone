@@ -1,25 +1,21 @@
 import { StyleSheet, Text, View, Image, TextInput, Button } from "react-native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PLACEHOLDER_IMG } from "../../../datas/constant";
 import { Colors } from "../../../styles/colors";
 import { Divider } from "@rneui/base";
 import { RootTabScreenProps } from "../../../../navigation/types";
-import validUrl from "valid-url";
-import ValidatorFactory from "../../../util/validator/validatorFactory";
+import usePostUpload from "./hooks/usePostUpload";
 
 const PostUploader = ({
   navigation,
 }: Partial<RootTabScreenProps<"NewPostScreen">>) => {
-  const [imageUrl, setImageUrl] = useState<string>(PLACEHOLDER_IMG);
-  const [isValidForm, setIsValidForm] = useState<boolean>(false);
-
-  const handleImageUrl = (url: string) => {
-    setImageUrl(url);
-  };
-
-  useEffect(() => {
-    setIsValidForm(ValidatorFactory.createValidator("url", imageUrl).isValid());
-  }, [imageUrl]);
+  const {
+    imageUrl,
+    handleCaption,
+    handleImageUrl,
+    isValidImageUrl,
+    uploadPost,
+  } = usePostUpload();
 
   return (
     <>
@@ -33,7 +29,7 @@ const PostUploader = ({
         <Image
           style={{ width: 100, height: 100 }}
           source={{
-            uri: validUrl.isUri(imageUrl) ? imageUrl : PLACEHOLDER_IMG,
+            uri: isValidImageUrl ? imageUrl : PLACEHOLDER_IMG,
           }}
         />
         <View style={{ flex: 1, marginLeft: 12 }}>
@@ -42,6 +38,7 @@ const PostUploader = ({
             placeholder="Write a caption"
             placeholderTextColor={Colors.grayColor}
             multiline
+            onChangeText={handleCaption}
           />
         </View>
       </View>
@@ -53,7 +50,7 @@ const PostUploader = ({
         autoCapitalize="none"
         onChangeText={handleImageUrl}
       />
-      {!ValidatorFactory.createValidator("url", imageUrl).isValid() && (
+      {!isValidImageUrl && (
         <Text style={{ fontSize: 10, color: "red" }}>
           This is invalid url. please check it again.
         </Text>
@@ -61,8 +58,8 @@ const PostUploader = ({
       <View style={{ marginTop: 20 }}>
         <Button
           title="Share"
-          disabled={!isValidForm}
-          onPress={() => navigation?.goBack()}
+          disabled={!isValidImageUrl}
+          onPress={uploadPost}
         />
       </View>
     </>
