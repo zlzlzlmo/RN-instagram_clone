@@ -1,3 +1,5 @@
+import { initializeApp } from "firebase/app";
+
 const firebaseConfig = {
   apiKey: "AIzaSyATOt-P5uz7Zvx-02xifVpO81VOaF9RFCE",
   authDomain: "instagram-1f719.firebaseapp.com",
@@ -8,4 +10,7 @@ const firebaseConfig = {
   measurementId: "G-GKQM84SB28",
 };
 
-export default firebaseConfig;
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+
+export default firebaseApp;

@@ -1,6 +1,13 @@
 import { useState } from "react";
 import Validator from "email-validator";
 import ValidatorFactory from "../../../../util/validator/validatorFactory";
+import { Alert } from "react-native";
+import firebaseApp from "../../../../../firebaseConfig";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 type LoginInfoKeyType = "email" | "password";
 
@@ -18,9 +25,20 @@ const useLoginForm = () => {
     setLoginInfo((loginInfo) => ({ ...loginInfo, password }));
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!ValidatorFactory.createValidator("email", loginInfo.email).isValid())
       return;
+
+    try {
+      const auth = getAuth(firebaseApp);
+      const authUser = await signInWithEmailAndPassword(
+        auth,
+        loginInfo.email,
+        loginInfo.password
+      );
+    } catch (error: any) {
+      Alert.alert("Not Allowed", error.message);
+    }
   };
 
   return { loginInfo, handleEmail, handlePassword, handleLogin };

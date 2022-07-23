@@ -1,5 +1,9 @@
-import { useEffect, useMemo, useState } from "react";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { useMemo, useState } from "react";
 import ValidatorFactory from "../../../../util/validator/validatorFactory";
+import { getFirestore } from "firebase/firestore";
+import firebaseApp from "../../../../../firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
 type SignUpInfoKeyType = "email" | "password" | "userName";
 
@@ -34,8 +38,28 @@ const useSignUpForm = () => {
     setSignUpInfo((signUpInfo) => ({ ...signUpInfo, password }));
   };
 
-  const handleSignUp = () => {
+  const getRandomProfilePicture = async () => {
+    const response = await fetch("https://randomuser.me/api");
+    const data = await response.json();
+    return data.results[0].picture.large;
+  };
+
+  const handleSignUp = async () => {
     if (!isValidSignUp) return;
+    const auth = getAuth(firebaseApp);
+    const authUser = await createUserWithEmailAndPassword(
+      auth,
+      signUpInfo.email,
+      signUpInfo.password
+    );
+
+    const db = getFirestore(firebaseApp);
+    await addDoc(collection(db, "users"), {
+      email: authUser.user.email,
+      owner_uid: authUser.user.uid,
+      userName: signUpInfo.userName,
+      profile_picture: await getRandomProfilePicture(),
+    });
   };
 
   return {
